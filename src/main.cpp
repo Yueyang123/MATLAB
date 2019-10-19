@@ -9,8 +9,9 @@ using namespace std;		//名字空间
 int main(void)
 {	
 
-
+   int i;
    cout<<Abs(-1)<<endl;
+   cin>>i;
     return 0;
 }
 
