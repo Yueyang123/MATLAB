@@ -1,8 +1,16 @@
-#include "common.h"
+/*
+*版权所有 (C)2019,Yueyang.
+*文件名称：Random.cpp
+*内容摘要：MATLAB随机数生成实现文件
+*当前版本：V1.0
+*作者：杨越
+*完成日期：20191018
+*/
+
 #include "Random.h"
 
 //产生一个[0,1]区间内均匀分布伪随机数
-double rand_01_One(double& seed)
+ double rand_01_One(double& seed)
 {		//seed为随机数种子
 	seed = ((unsigned long)seed) % MODUL65536;		//以65536为模对种子取余
 	seed = RandCoef2053 * (seed) + RandCoef13849;	//乘、加系数
@@ -12,7 +20,7 @@ double rand_01_One(double& seed)
 }
 
 //产生多个[0,1]区间内均匀分布伪随机数
-inline void 
+void 
 rand_01_Series(double& seed, valarray<double>& dp, const size_t stCount)
 {	//seed为随机数种子，dp存放生成的随机数列，srCount指定要生成的随机数个数
 	for(size_t st=0; st<stCount; st++)
@@ -24,7 +32,7 @@ rand_01_Series(double& seed, valarray<double>& dp, const size_t stCount)
 }
 
 //产生任意[a,b]区间内一个均匀分布伪随机整数
-inline size_t 
+ size_t 
 rand_ab_One(size_t a, size_t b, size_t& seed)
 {			//a,b为区间左右端点，seed为种子
 	size_t rand;
@@ -50,7 +58,7 @@ rand_ab_One(size_t a, size_t b, size_t& seed)
 }
 
 //产生多个任意[a,b]区间内均匀分布伪随机整数序列
-inline void 
+ void 
 rand_ab_Series(size_t a, size_t b, size_t& seed, valarray<size_t>& sp, size_t stCount)
 {   //a,b为区间左右端点，seed为种子，sp存放随机数序列，stCount指定随机数个数
 	size_t stk = b - a + 1;
@@ -76,7 +84,7 @@ rand_ab_Series(size_t a, size_t b, size_t& seed, valarray<size_t>& sp, size_t st
 //产生任意均值与方差的一个正态分布随机数
 //函数的参数：mu和ro(μ和σ值)要事先给定，也可从其它程序中获得。
 //如果算法中的n值要取的更大(超过12)，程序要稍加修改。
-inline double 
+ double 
 rand_NormalDistributing_One(double mu, double ro, double& seed)
 {
 	double rand = 0.0;
@@ -93,7 +101,7 @@ rand_NormalDistributing_One(double mu, double ro, double& seed)
 //产生任意均值与方差的正态分布随机数序列
 //函数的参数：mu和ro(μ和σ值)要事先给定，也可从其它程序中获得。
 //如果算法中的n值要取的更大(超过12)，程序要稍加修改。
-inline void 
+ void 
 rand_NormalDistributing_Series(double mu, double ro, double seed, valarray<double>& dp, size_t stCount)
 {			//seed为种子，dp存放随机数序列，stCount指定要生成的随机数个数
 	for (size_t st = 0; st < stCount; st++)

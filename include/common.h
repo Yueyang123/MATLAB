@@ -17,6 +17,22 @@
 #define __API__       //用户函数标记
 #define __KERNEl__    //内部函数标记
 
+ /******
+ 由于NDEBUG是为程序调试(debug)期间使用的，当调试期完毕，程序出
+ 发行版(release)后，NDEBUG将失去作用。为了能够使assert()函数在发行
+ 版中也可以使用，则定义了下面的条件编译NDEBUG，意思为：
+ 如果已经定义NDEBUG，则定义宏Assert(x)：当x为假时，执行throw，
+ 交由系统已定义的方式处理；否则将Assert(x)定义为函数assert(x)，该
+ 函数对 参数x进行测试：x为假时，函数终止程序并打印错误信息。
+ *****/
+  #ifdef NDEBUG			
+  #define Assert(x)	if (!x)	throw;	
+  #else			//否则用系统定义的函数assert()处理
+  #include <cassert>
+  #define Assert(x)	assert(x);
+  #endif			//NDEBUG
+
+
 using namespace std;
 
 //浮点数精确度，用来做浮点数的等值判断
@@ -32,7 +48,7 @@ using namespace std;
 
 //返回任意类型数值的绝对值
 template <class T>
-inline long double		//判断绝对值
+long double		//判断绝对值
 __API__ Abs(const T& x)
 {
 	complex<long double> cld(x);
@@ -50,6 +66,7 @@ __API__ Sgn(const T& x)
 
 //浮点型等值判断函数
 //这里采用函数重载实现不同类型浮点数的判断
+//对于非模板类函数放在头文件中必须声明为inline
 inline bool			//判断float浮点数相等
 __API__ FloatEqual(float lhs, float rhs)
 {
@@ -106,8 +123,7 @@ __API__ FloatNotEqual(long double lhs, long double rhs)
  
  //取最小值
 template <class T>
-inline T
-__API__ Min(const T& x, const T& y)			//比较x与y，返回小者
+__API__  T Min(const T& x, const T& y)			//比较x与y，返回小者
 {
 	if(x < y)
 		return x;
