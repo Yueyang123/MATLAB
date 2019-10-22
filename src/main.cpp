@@ -14,6 +14,8 @@
 #include <complex>
 #include "Matrix.h"
 
+
+
 using namespace std;		//名字空间
 
 int main(void)
