@@ -1,0 +1,12 @@
+# MATLAB
+I want to realize part function of MATLAB with c++
+
+10.24
+     实现多项式计算的功能
+     包括：单多项式计算单数值
+          单多项式计算多值
+          计算二维多项式数值
+          计算一维多项式相乘
+          一维多项式相除
+          计算连分式值
+      函数模板实现
