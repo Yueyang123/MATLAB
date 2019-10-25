@@ -22,11 +22,12 @@ using namespace std;
     void CockSort(vector<int> &arr);
     void CockSort(vector<float> &arr);
 
-    // void QuickSort(vector<int> &a);
-    // int Partition(vector<int> &a, int left, int right);
+    void QuickSort(vector<int> &a);
+    int Partition(vector<int> &a, int left, int right);
     void InsertSort(vector<int> &a);
     void SelectSort(vector<int> &a);
     void InsertSort(vector<float> &a);
     void SelectSort(vector<float> &a);
 
+    int SortTest(void);
 #endif 

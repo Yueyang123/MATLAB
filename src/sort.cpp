@@ -4,8 +4,10 @@
 *内容摘要：MATLAB快速排序算法
 *当前版本：V1.0
 *作者：杨越
-*完成日期：20191018
+*完成日期：20191026
 */
+//该文件分别通过冒泡，选择，插入，快排的方式
+//实现了对于向量的稳定排序
 
 #include "sort.h"
 #include <iostream>
@@ -197,6 +199,17 @@ void InsertSort(vector<int> &a)
     }
 }
 
+void InsertSort(vector<float> &a)
+{
+    int temp = 0;
+    for (int i = 1,j = 1; i < a.size(); i++)
+    {
+        j = i;
+        temp = a[i];  //待插入的数，假设第一个已经排好序
+        while (j > 0 && temp < a[j - 1])a[j] = a[j - 1],--j; //向前逐个比较，若该位置插入不了，则往后移
+        a[j] = temp; //插入
+    }
+}
 /****************************************
 * function          快速排序法--分区       *
 * param     a[]     待分区的数组          *
@@ -204,7 +217,7 @@ void InsertSort(vector<int> &a)
 * param     right   区间右             *
 * return            返回新的基准keyindex  *
 *****************************************/
-int Partition(int a[], int left, int right)
+int Partition(vector<int> &a, int left, int right)
 {
     int midIndex = left;
     while (left < right)
@@ -241,7 +254,14 @@ int Partition(int a[], int left, int right)
 * space             O(NlogN)            *
 * stable            no                  *
 *****************************************/
-void Quick_Sort(int a[], int left, int right)
+/*
+基本思路：
+1．先从数列中取出一个数作为基准数。
+2．分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边。
+3．再对左右区间重复第二步，直到各区间只有一个数。
+*/
+
+void Quick_Sort(vector<int> &a, int left, int right)
 {
     if (left < right)
     {
@@ -257,7 +277,7 @@ void Quick_Sort(int a[], int left, int right)
     }
 }
 
-void QuickSort(int a[], int n)
+void QuickSort(vector<int> &a)
 {
-    Quick_Sort(a, 0, n - 1);
+    Quick_Sort(a, 0, a.size() - 1);
 }

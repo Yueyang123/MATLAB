@@ -10,33 +10,22 @@
 #include "Random.h"		//随机算法头文件
 #include "common.h"
 #include "polynomials.h"
+#include "Matrix.h"
+#include "sort.h"
+#include "LinerEquation.h"
 #include <iostream>			//输入输出流头文件			
 
 #include <complex>
 #include <vector>
-#include "Matrix.h"
-#include "sort.h"
+
 using namespace std;		//名字空间
 
-template <class T>
-void printsort(vector<T>& val)
-{
-    for(int i=0;i<=val.size()-1;i++)
-    {
-    cout<<val[i]<<endl;
-    }
-}
 
 
 int main(void)
 {	
-    float test[13]={1.1,2.1,3.3,4.4,5,6,7,6,5,4,3,2,1};
-    vector<float> b(test,test+sizeof(test)/4);
-    CockSort(b);
-
-
-    printsort(b);
-    return 0;
+    
+    SortTest();
 }
 
 

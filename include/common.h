@@ -32,6 +32,14 @@
   #define Assert(x)	assert(x);
   #endif			//NDEBUG
 
+//在嵌入式编程中的常见套路
+//可以快速定义想要的数据类型
+typedef unsigned char uint8_t;
+typedef unsigned short int uint16_t;
+typedef unsigned int uint32_t;
+typedef uint32_t  u32;
+typedef uint16_t u16;
+typedef uint8_t  u8;
 
 using namespace std;
 
